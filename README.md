@@ -1,65 +1,68 @@
-# DND-Stream-Session-Summarizer
-Listens to your microphone then transcribes what you are saying into text and then when someone in your twitch chat types the command it summarizes everything that has been transcribed into a bullet point summery of what has happened in this session.
+# DND Stream Session Summarizer
+
+Listens to your microphone, transcribes your words into text, and then summarizes the session into bullet points when a command is issued in your Twitch chat.
 
 # Setup Instructions
 
-To get this bot working, you will need to follow the steps outlined below. Please ensure each step is completed to avoid any issues.
+Follow these steps to ensure a smooth setup:
 
 ## Prerequisites
 
-1. **Extract the Zip File**: Confirm you have extracted the zip file. This program will not work in its compressed form.
+1. **Extract the Zip File**: Make sure you've extracted the zip file. The program won't work in its compressed form.
 
-2. **Download Python**: Visit [Python Downloads](https://www.python.org/downloads/release/python-3118/) to download Python. This program was coded in Python 3.11.8, so if you encounter any issues, make sure to use this specific version. 
-PLEASE MAKE SURE TO TICK ON THE OPTION TO ADD TO PATH WHEN INSTALLING. 
+2. **Download Python**: Download Python 3.11.8 from the [official Python website](https://www.python.org/downloads/release/python-3118/). This version is recommended for compatibility. **Ensure the 'Add to PATH' option is selected during installation.**
 
 ## Installation Steps
 
-1. **Open Command Prompt as Administrator**: This is necessary for the commands to run properly.
+1. **Open Command Prompt as Administrator**: Necessary for the proper execution of commands.
 
-2. **Navigate to the Folder**: Use the `cd` command to go to the folder location in the command prompt. Replace the example path with the path to your downloaded folder. Here's an example command (assume the folder is located in the F Drive):
+2. **Navigate to Your Folder**: Use the `cd` command to navigate to the program's folder. Example:
     ```
     cd /d F:\Ai\Junk\Summeriser
     ```
 
-3. **Install Requirements**: While in the correct folder, run the following command to install the program's requirements:
+3. **Install Requirements**: Execute the following to install dependencies:
     ```
     pip install -r requirements.txt
     ```
 
 ## Configuration
 
-1. **Open `creds.py`**: Use an editor like VS Code (or Notepad for a simpler option, though it's less readable).
+1. **Edit `creds.py`**: Open this file in a text editor like VS Code or Notepad.
 
-2. **Configure Tokens**:
-    - **BOT_TWITCH_TOKEN**: Enter the token of the Twitch account for sending messages within the quotes of `BOT_TWITCH_TOKEN`. You can obtain the token by visiting [Twitch Token Generator](https://twitchtokengenerator.com/), clicking "Bot Chat Token", and copying the Access Token.
-    - **USER_TWITCH_TOKEN**: Enter your Twitch channel's token within the quotes of `USER_TWITCH_TOKEN`. This is required for the program to read messages from your channel. You can use the same account for both `BOT_TWITCH_TOKEN` and `USER_TWITCH_TOKEN` if desired.
-    - **TWITCH_CHANNEL**: Enter the name of your Twitch channel within the quotes of `TWITCH_CHANNEL`. For example, `TWITCH_CHANNEL = "gispry"`.
+2. **Configure Tokens and Channels**:
+    - **BOT_TWITCH_TOKEN**: Insert the bot's Twitch token within quotes.
+    - **USER_TWITCH_TOKEN**: Your Twitch channel's token goes here.
+    - **TWITCH_CHANNEL**: Your Twitch channel name.
+    
+    Visit [Twitch Token Generator](https://twitchtokengenerator.com/) for tokens.
 
-3. **OPENAI_API_KEY**: Insert your OpenAI API key in the `OPENAI_API_KEY` section. Obtain the key by signing up or logging in at [OpenAI](https://openai.com/api/) and creating a new secret key.
+3. **OPENAI_API_KEY**: Your OpenAI API key goes here. Obtain it from [OpenAI](https://openai.com/api/).
 
-4. **Customize Duration**: Optionally, adjust the duration for the recording. It's recommended to keep it under 2 minutes due to the token limit of GPT-3.5.
+4. **Customize Duration**: The recording duration can be adjusted. Note the token limit of GPT models.
 
-5. **Choose GPT Model**: Change between using gpt3 and gpt4 by adjusting the `GPT_MODEL` setting.
+5. **Choose GPT Model**: Toggle between GPT-3 and GPT-4 in the `GPT_MODEL` setting.
 
-6. **Save and Close**: After configuring, save the `creds.py` file and close the editor.
+6. **Optional Settings**:
+    - **Edit Command Names**: Change the default commands (!history and !recent) in `RECENT` and `HISTORY`.
+    - **Adjust 'Recent' Duration**: Modify `LAST_WORDS_COUNT` to change the timeframe considered 'recent'.
+    - **Startup Checks**: You can disable startup checks (`CHECK_PERMISSIONS`, `CHECK_AUDIO_FILES`, `CHECK_HISTORY`) by setting them to 'NO'. First-time users should leave these enabled.
+
+7. **Save Changes**: After making your adjustments, save and close `creds.py`.
 
 ## Starting the Program
 
-- To start the program, double-click the `start.bat` file. 
-- Select what Microphone you want to use from the dropdown
-- Select the option to start recording
+- Run `start.bat` by double-clicking it.
+- Choose your microphone and start recording.
 
 ## Stopping the Program
 
-- Please close the GUI that you are able to use to select your microphone before closing the shell
+- Close the microphone selection GUI before closing the command prompt window.
 
-## Additional information
-There has been some issues with testing where some people have not been able to create or delete new or existing files. This causes the program to record all 6 audio files and transcribe the correctly but it will never continue from there and will always give the same summery. If you notice that there are six audio files in the folder for this program that will likely mean your shell does not have the ability to delete existing audio files. The way around this is to:
-- Close the program
-- Right click on Start.bat and create a shortcut of it (shift right click if the option does not show up)
-- Go into the properties of that shortcut
-- Go into Advanced in the bottom right
-- Tick on the option to 'Run as administrator'
-- Click ok twice
-- Open the shortcut
-This will open the program as administrator and should give it the ability to create and delete files successfully.
+## Troubleshooting File Permissions
+
+If the program fails to progress after transcribing six audio files, it's likely due to insufficient permissions to modify files. To resolve this:
+
+1. Create a shortcut of `start.bat`.
+2. Access shortcut properties > Advanced > Check 'Run as administrator'.
+3. Use this shortcut to launch the program with the necessary permissions.
