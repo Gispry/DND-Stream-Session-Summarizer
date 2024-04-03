@@ -52,3 +52,14 @@ PLEASE MAKE SURE TO TICK ON THE OPTION TO ADD TO PATH WHEN INSTALLING.
 ## Stopping the Program
 
 - Please close the GUI that you are able to use to select your microphone before closing the shell
+
+## Additional information
+There has been some issues with testing where some people have not been able to create or delete new or existing files. This causes the program to record all 6 audio files and transcribe the correctly but it will never continue from there and will always give the same summery. If you notice that there are six audio files in the folder for this program that will likely mean your shell does not have the ability to delete existing audio files. The way around this is to:
+- Close the program
+- Right click on Start.bat and create a shortcut of it (shift right click if the option does not show up)
+- Go into the properties of that shortcut
+- Go into Advanced in the bottom right
+- Tick on the option to 'Run as administrator'
+- Click ok twice
+- Open the shortcut
+This will open the program as administrator and should give it the ability to create and delete files successfully.
